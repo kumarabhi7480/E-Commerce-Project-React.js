@@ -1,11 +1,15 @@
 
-import './App.css';
+
+import Footer from './components/Layouts/Footer';
+import Header from './components/Layouts/Header';
+import AllRoutes from './routes/AllRoutes';
 
 function App() {
   return (
     <div className="App">
-      
-     <h1>Hello</h1>
+      <Header />
+     <AllRoutes />
+     <Footer />
     </div>
   );
 }
