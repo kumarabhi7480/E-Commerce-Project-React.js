@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
 import { ProductCard } from "../../components/Elements/ProductCard";
 import { FilterBar } from "./components/FilterBar";
+import { useLocation } from "react-router-dom";
 
- const ProductsList = () => {
+const ProductsList = () => {
   const [show, setShow] = useState(false);
   const [products, setProducts] = useState([]);
+  const search = useLocation().search;
 
-  useEffect(()=>{
+  const searchTerm = new URLSearchParams(search).get("q");
+  console.log(searchTerm);
+  useEffect(() => {
     async function fetchProducts(){
-      const response = await fetch("http://localhost:8000/products");
+      const response = await fetch(`http://localhost:8000/products?name_like=${searchTerm ? searchTerm : ""}`);
       const data = await response.json()
       setProducts(data);
     }
-    fetchProducts()
-  },[])
+    fetchProducts();
+  }, []);
+
   return (
     <main>
         <section className="my-5">
@@ -27,12 +32,9 @@ import { FilterBar } from "./components/FilterBar";
           </div>    
 
           <div className="flex flex-wrap justify-center lg:flex-row">
-            
-           {
-            products.map((product)=>(
+            { products.map((product) => (
               <ProductCard key={product.id} product={product} />
-            ))
-           }
+            )) }            
           </div>  
         </section>
 
