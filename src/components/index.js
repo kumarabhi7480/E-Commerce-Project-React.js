@@ -1,9 +1,10 @@
-export {Header} from './Layouts/Header'
-export {Footer} from './Layouts/Footer';
+export { Header } from "./Layouts/Header";
+export { Footer } from "./Layouts/Footer";
 
-export {productCard} from './Elements/ProductCard';
+export { ProductCard } from "./Elements/ProductCard";
+export { Rating } from "./Elements/Rating";
 
-export {Rating} from './Elements/Rating';
+export { DropdownLoggedIn } from "./Elements/DropdownLoggedIn";
+export { DropdownLoggedOut } from "./Elements/DropdownLoggedOut";
 
-
-export {scrollToTop} from './Other/ScrollToTop';
+export { ScrollToTop } from "./Other/ScrollToTop";

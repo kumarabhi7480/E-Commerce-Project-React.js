@@ -1,15 +1,12 @@
-
-
-import Footer from './components/Layouts/Footer';
-import Header from './components/Layouts/Header';
-import AllRoutes from './routes/AllRoutes';
+import { AllRoutes } from './routes/AllRoutes';
+import { Footer, Header } from './components';
 
 function App() {
   return (
     <div className="App dark:bg-dark">
       <Header />
-     <AllRoutes />
-     <Footer />
+      <AllRoutes />
+      <Footer />
     </div>
   );
 }

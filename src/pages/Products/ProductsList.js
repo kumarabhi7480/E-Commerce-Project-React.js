@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react";
-import { ProductCard } from "../../components/Elements/ProductCard";
-import { FilterBar } from "./components/FilterBar";
 import { useLocation } from "react-router-dom";
-import {useTitle} from '../../hooks/useTitle';
-const ProductsList = () => {
- 
-  const [show, setShow] = useState(false);
-  const [products, setProducts] = useState([]);
-  const search = useLocation().search;
+import { useTitle } from "../../hooks/useTitle";
+import { useFilter } from "../../context";
+import { ProductCard } from "../../components";
+import { FilterBar } from "./components/FilterBar";
 
+export const ProductsList = () => {
+  const { products, initialProductList } = useFilter();
+  const [show, setShow] = useState(false);
+  const search = useLocation().search;
   const searchTerm = new URLSearchParams(search).get("q");
-  useTitle("Explore eBooks Collection")
-  console.log(searchTerm);
+  useTitle("Explore eBooks Collection");
+ 
+
   useEffect(() => {
     async function fetchProducts(){
       const response = await fetch(`http://localhost:8000/products?name_like=${searchTerm ? searchTerm : ""}`);
       const data = await response.json()
-      setProducts(data);
+      
+      initialProductList(data);
     }
     fetchProducts();
-  }, []);
+  }, [searchTerm]);
 
   return (
     <main>
@@ -45,5 +47,3 @@ const ProductsList = () => {
     </main> 
   )
 }
-
-export default ProductsList;
