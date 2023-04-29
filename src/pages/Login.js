@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
+import { login } from "../services";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -13,19 +14,8 @@ export const Login = () => {
       email: email.current.value,
       password: password.current.value
     }
-    const requestOptions = {
-      method: "POST",
-      headers: {"content-Type": "application/json"},
-      body: JSON.stringify(authDetail)
-    }
-    const response = await fetch("http://localhost:8000/login", requestOptions);
-    const data = await response.json();
-     data.accessToken ? navigate("/products") : toast.error(data);
-
-    if(data.accessToken){
-      sessionStorage.setItem("token", JSON.stringify(data.accessToken));
-      sessionStorage.setItem("cbid", JSON.stringify(data.user.id));
-    }
+    const data = await login(authDetail);
+    data.accessToken ? navigate("/products") : toast.error(data);
   }
 
   return (
@@ -36,7 +26,7 @@ export const Login = () => {
         <form onSubmit={handleLogin}>
           <div className="mb-6">
               <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your email</label>
-              <input ref={email} type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="abhishke@example.com" required autoComplete="off" />
+              <input ref={email} type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="shubham@example.com" required autoComplete="off" />
           </div>
           <div className="mb-6">
               <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Your password</label>
