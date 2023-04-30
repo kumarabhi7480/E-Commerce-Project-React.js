@@ -479,6 +479,12 @@
       "password": "$2a$10$4BASxgjaVFALtJnrAQi4NOvXTIftHSvOasDJxqGxpVvoioykc1QFG",
       "name": "Abhishek kumar",
       "id": 4
+    },
+    {
+      "email": "abhishek@example.com",
+      "password": "$2a$10$nigJ1evZfUeu5uTYwGq9wurUU.gJ821vUiWsiYxJ5c5lYI3VMGsHS",
+      "name": "Abhishek Kumar",
+      "id": 5
     }
   ]
 }
